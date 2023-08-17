@@ -1,10 +1,19 @@
 import "../css/common.css"
 import "../css/Login.css"
+import React, {useEffect, useState} from "react";
+import axios from 'axios';
 
 function KakaoLogin(){
+    const [msg, setMsg] = useState('')
+
+    useEffect(()=>{
+        axios.get('/account/register')
+            .then(response=> setMsg(response.data))
+            .catch(error => console.log(error))
+    }, [])
     return(
         <div>
-            카카오 로그인
+            {msg}
         </div>
     )
 }

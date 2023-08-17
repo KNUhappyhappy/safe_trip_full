@@ -11,6 +11,7 @@ function NationProvider(props) {
         axios.get("http://110.165.16.225:8080/nation?idx=183")
             .then((res) => {
                 console.log(res.data)
+                setNation(res);
             })
             .catch((err) => console.log(err))
     }, [])

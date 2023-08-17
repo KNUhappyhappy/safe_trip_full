@@ -1,13 +1,14 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, {useEffect, useState, useContext, Suspense} from "react";
 import axios from "axios";
 import "../css/common.css"
 import "../css/NationalSecurity.css"
 import { Link } from "react-router-dom";
+
+import * as naion from "../api/NationProvider.jsx"
 import { set } from "immutable";
 import { NationContext } from "../api/NationProvider";
 
 function NationalSecurity(){
-//     let [nationData, setnationData] = useState([]);
 
 // const getData = async () => {
 //     const url = "http://110.165.16.225:8080/nation?idx=2";
@@ -47,8 +48,27 @@ function NationalSecurity(){
 //         });
 // }, [])
 
+// fetch("http://110.165.16.225:8080/nation?idx=183")
+//     .then((response) => console.log(response));
+    const [number, setNumber] = useState({});
+    const [nation, setNation] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
+    useEffect(() => {
+        axios.get(`http://110.165.16.225:8080/nation?idx=5`)
+            .then((res) => {
+                console.log(res.data.kor_name)
+                setNation(res);
+                setIsLoading(false);
+            })
+            .catch((err) => console.log(err))
+    }, [])
+
     return (
-        <div className="nationalsecurity_main">
+        <div >
+            {isLoading ? (
+                <p>Loading...</p>
+            ) : (
+                <div className="nationalsecurity_main">
             <div className="searchbar_div">
                 <p>안전행을 위해 입력하세요!</p>
                 <input className="searchbar_input" type="text" placeholder="일본"></input>
@@ -62,22 +82,19 @@ function NationalSecurity(){
                             <div className="nationcard_div-img">국기</div>
                             <div>
                                 <div className="nationcard_div-title" values="kor_name">
-                                    <p></p>
+                                    <p>{nation.data.kor_name}</p>
                                 </div>
-                                <p>nation name</p>
+                                <p>{nation.data.eng_name}</p>
                             </div>
                         </div>
                         <div className="nationcard_detail">
-                            <p>대사관 정보</p>
-                            <p>대사관 주소 :</p>
-                            <p>영사부 주소 : </p>
-                            <p>대사관과 영사부 위치가 다르므로 주의 필요</p>
-                            <p>대표번호(근무시간 중) :</p>
+                            <p>대사관 정보 </p>
+                            <p>{nation.data.embassy_detail}</p>
                             <p>긴급연락처(사건사고 등 긴급상황 발생 시_24시간) : </p>
                         </div>
                         <div className="nationcard_button">
-                            <button>외교부 자세히 보기</button>
-                            <button>대사관 홈페이지</button>
+                            <button onClick={() => window.open("https://www.0404.go.kr/dev/country_view.mofa?idx=183")}>외교부 자세히 보기</button>
+                            <button onClick={() => window.open("http://overseas.mofa.go.kr/jp-ko/index.do")}>대사관 홈페이지</button>
                         </div>
                     </div>
                 </div>
@@ -121,7 +138,7 @@ function NationalSecurity(){
                             </div>
                         </div>
                         </div>
-                        
+
                 </div>
                 </div>
                 <div className="nation_div-grid2">
@@ -149,9 +166,10 @@ function NationalSecurity(){
                     </div>
                 </div>
             </div>
-
+                </div>
+                )}
         </div>
-        
+
     )
 }
 
