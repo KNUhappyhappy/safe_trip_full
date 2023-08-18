@@ -1,6 +1,6 @@
 // import "bootstrap/dist/css/bootstrap.min.css";
 
-import "../css/CommunityWritingpage.css";
+import "../css/CommunityWritingPage.css";
 import React, { useState } from "react";
 
 // import { FileUploader } from "react-drag-drop-files";
@@ -44,6 +44,7 @@ function CommunityWritingPage() {
               <div className="CommunityWritingBoxCategory">
                 <div className="CommunityWritingBoxCategorySelect">
                   <span>#카테고리를 선택하세요</span>
+                  <CommunityCategoryBoxes />
                 </div>
                 <div className="CommunityWritingBtn">
                   <button onClick={handleRegisterButtonClick}>등록하기</button>
@@ -54,6 +55,37 @@ function CommunityWritingPage() {
         </div>
       </div>
     </>
+  );
+}
+
+function CommunityCategoryBoxes() {
+  return (
+    <div className="CommunityCategoryBoxes">
+      <div className="CommunityCategoryBox category1">
+        <span>자연재해</span>
+      </div>
+      <div className="CommunityCategoryBox category2">
+        <span>운전</span>
+      </div>
+      <div className="CommunityCategoryBox category3">
+        <span>문화</span>
+      </div>
+      <div className="CommunityCategoryBox category4">
+        <span>대중교통</span>
+      </div>
+      <div className="CommunityCategoryBox category5">
+        <span>시장</span>
+      </div>
+      <div className="CommunityCategoryBox category6">
+        <span>여행 꿀팁</span>
+      </div>
+      <div className="CommunityCategoryBox category7">
+        <span>의료</span>
+      </div>
+      <div className="CommunityCategoryBox category8">
+        <span>식품</span>
+      </div>
+    </div>
   );
 }
 

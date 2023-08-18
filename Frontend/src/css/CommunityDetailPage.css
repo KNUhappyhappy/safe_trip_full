@@ -53,19 +53,58 @@
 }
 
 .CommunityDetailContentsTitle {
-  padding: 0% 5%;
-  display: flex;
+  padding: 2% 5%;
+  display: grid;
+  grid-template-columns: 0.3fr 1.8fr 0.7fr;
   align-items: center;
-  /* justify-content: center; */
-  flex-direction: row;
+  /* flex-direction: row; */
   text-align: left;
 }
 
 .CommunityDetailContentsCategory {
-  width: 8%;
-  height: 30px;
-  border-radius: 20px;
-  background-color: #979797;
+  width: 80%;
+  height: 3.2rem;
+  margin: 0.2rem;
+  border-radius: 2rem;
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 1rem 1rem;
+  font-size: 12px;
+  text-align: center;
+  align-items: center;
+}
+
+.CommunityDetailContentsTitleMenuBarShare {
+  font-size: 16px;
+  color: #979797;
+  display: grid;
+  grid-template-columns: 0.3fr 0.6fr 1.2fr;
+}
+
+.dropdownMenu {
+  position: fixed;
+  width: 120px;
+  height: 50px;
+  text-align: right;
+  display: grid;
+  background-color: white;
+  border: 1px solid #c7c7c7;
+  margin: 30px 0px 0px 20px;
+  text-align: center;
+  align-items: center;
+}
+
+.CommunityPostModify {
+  border-bottom: 1px solid #c7c7c7;
+}
+
+.CommunityPostDelete {
+  color: #ff6565;
+}
+
+.AiOutlineMore {
+  font-size: 20px;
+  margin-left: 20px;
 }
 
 .CommunityDetailContentsInfo {
@@ -77,6 +116,43 @@
   text-align: left;
   font-size: 14px;
   color: #979797;
+  display: grid;
+  grid-template-columns: 0.1fr 0.1fr;
+}
+
+.CommunityDetailContentsMain {
+  box-sizing: border-box;
+  padding-top: 75px;
+}
+
+.CommunityDetailContentsMainImg1,
+.CommunityDetailContentsMainImg2 {
+  width: 70%;
+  height: 450px;
+  background-color: #979797;
+  margin: 0 auto;
+}
+
+.CommunityDetailContentsMainImg1 {
+  background: url("/public/Images/CommunityPage/CommunityDetailContentsMainImg1.png")
+    center / cover no-repeat;
+}
+
+.CommunityDetailContentsMainImg2 {
+  background: url("/public/Images/CommunityPage/CommunityDetailContentsMainImg2.png")
+    center / cover no-repeat;
+}
+
+.CommunityDetailContentsMainIntro1,
+.CommunityDetailContentsMainIntro2 {
+  margin: 50px 0px;
+}
+
+.CommunityDetailContentsMainIntro1 span,
+.CommunityDetailContentsMainIntro2 span {
+  display: block;
+  margin-bottom: 30px;
+  font-size: 14px;
 }
 
 /* CommunityDetailContents */

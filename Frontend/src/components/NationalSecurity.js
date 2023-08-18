@@ -7,6 +7,9 @@ import { Link } from "react-router-dom";
 import * as naion from "../api/NationProvider.jsx"
 import { set } from "immutable";
 import { NationContext } from "../api/NationProvider";
+import Searchbar from "./Searchbar";
+import * as searchWord from "./Searchbar.js";
+
 
 function NationalSecurity(){
 
@@ -53,8 +56,29 @@ function NationalSecurity(){
     const [number, setNumber] = useState({});
     const [nation, setNation] = useState({});
     const [isLoading, setIsLoading] = useState(true);
+    const [searchWord, setSearchWord] = useState("");
+    const [SearchMessage, setSearchMessage] = useState("");
+
+    const onClickSearch = (e) =>{
+        console.log("버튼 눌림!");
+        console.log(searchWord)
+        axios.get(`http://110.165.16.225:8080/nation?name=${searchWord}`)
+            .then((res) => {
+                console.log(res.data.kor_name)
+                setNation(res);
+                setIsLoading(false);
+            })
+            .catch((err) => {
+                console.log(err);
+                setSearchMessage("해당하는 국가의 정보가 없습니다. 검색어를 한국어로 다시 입력하세요");
+            })
+        }
+
+    const onChangeSearch = (e) => {
+        setSearchWord(e.target.value);
+    }
     useEffect(() => {
-        axios.get(`http://110.165.16.225:8080/nation?name=가봉`)
+        axios.get(`http://110.165.16.225:8080/nation?name=${searchWord}`)
             .then((res) => {
                 console.log(res.data.kor_name)
                 setNation(res);
@@ -63,18 +87,32 @@ function NationalSecurity(){
             .catch((err) => console.log(err))
     }, [])
 
+    const onEnterPress = (e) => {
+        if(e.key=='Enter'){
+            onClickSearch();
+        }
+    }
+
     return (
         <div >
             {isLoading ? (
-                <p>Loading...</p>
+                <div className="nationalsecurity_main">
+                    <div className="searchbar_div">
+                        <p>안전행을 위해 입력하세요!</p>
+                        <input className="searchbar_input" type="text" placeholder="국가이름을 검색하세요." onKeyPress={onEnterPress} onChange={onChangeSearch}></input>
+                        <button className="searchbar_button" onClick={onClickSearch}>검색</button>
+                        <button className="searchbar_bookmark">즐겨찾기 저장</button>
+                    </div>
+                    <p>{SearchMessage}</p>
+                </div>
             ) : (
                 <div className="nationalsecurity_main">
-            <div className="searchbar_div">
-                <p>안전행을 위해 입력하세요!</p>
-                <input className="searchbar_input" type="text" placeholder="일본"></input>
-                <button className="searchbar_button">검색</button>
-                <button className="searchbar_bookmark">즐겨찾기 저장</button>
-            </div>
+                    <div className="searchbar_div">
+                        <p>안전행을 위해 입력하세요!</p>
+                        <input className="searchbar_input" type="text" placeholder="국가이름을 검색하세요." onChange={onChangeSearch}></input>
+                        <button className="searchbar_button" onClick={onClickSearch}>검색</button>
+                        <button className="searchbar_bookmark">즐겨찾기 저장</button>
+                    </div>
             <div className="nation_div-grid">
                 <div className="nation_div-card">
                     <div className="nationcard_div nation_div-information">
