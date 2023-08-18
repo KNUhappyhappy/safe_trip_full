@@ -5,6 +5,7 @@
   --main_color: #75baff;
   --sub_color: #409fff;
   transform: translateZ(0);
+  white-space: pre-line;
 }
 
 html,

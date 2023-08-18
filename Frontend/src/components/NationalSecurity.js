@@ -54,7 +54,7 @@ function NationalSecurity(){
     const [nation, setNation] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {
-        axios.get(`http://110.165.16.225:8080/nation?idx=5`)
+        axios.get(`http://110.165.16.225:8080/nation?name=가봉`)
             .then((res) => {
                 console.log(res.data.kor_name)
                 setNation(res);
@@ -89,8 +89,8 @@ function NationalSecurity(){
                         </div>
                         <div className="nationcard_detail">
                             <p>대사관 정보 </p>
-                            <p>{nation.data.embassy_detail}</p>
-                            <p>긴급연락처(사건사고 등 긴급상황 발생 시_24시간) : </p>
+                            <p className="nationcard_detail-p">{nation.data.embassy_detail}</p>
+                            {/*<p>긴급연락처(사건사고 등 긴급상황 발생 시_24시간) : </p>*/}
                         </div>
                         <div className="nationcard_button">
                             <button onClick={() => window.open("https://www.0404.go.kr/dev/country_view.mofa?idx=183")}>외교부 자세히 보기</button>

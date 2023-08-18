@@ -199,6 +199,10 @@
     font-weight: 600;
 }
 
+.nationcard_detail-p{
+    height: fit-content;
+}
+
 @media (min-width:1024px){
     .nationalsecurity_main p{
         font-size: 1.2rem;
@@ -239,5 +243,5 @@
         margin-left: 3%;
     }
 
-    
+
 }

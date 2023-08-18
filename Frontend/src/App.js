@@ -6,9 +6,7 @@ import MainPage from "./Screen/MainPage";
 import Community from "./Screen/Community";
 import Footer from "./components/Footer";
 import Login from "./components/Login";
-import KakaoLogin from "./components/KakaoLogin";
-import Join from "./components/join";
-import GoogleLogin from "react-google-login";
+import Join from "./components/Join";
 import CommunityWritingPage from "./Screen/CommunityWritingPage";
 import CommunityDetailPage from "./Screen/CommunityDetailPage";
 import NationalSecurity from "./components/NationalSecurity";
@@ -36,9 +34,7 @@ function App() {
             element={<CommunityDetailPage />}
           />
           <Route path="/login" element={<Login />} />
-          <Route path="/GoogleLogin" element={<GoogleLogin />} />
-          <Route path="/KakaoLogin" element={<KakaoLogin />} />
-          <Route path="/join" element={<Join />} />
+          <Route path="/Join" element={<Join />} />
           <Route path="/myPage" element={<MyPage />}/>
         </Routes>
         <Footer />
